@@ -7,7 +7,7 @@ import pytest
 
 from dataset_quality_checker.checker import run_checks
 from dataset_quality_checker.cli import main
-from dataset_quality_checker.models import DatasetError
+from dataset_quality_checker.models import DatasetError, Issue, Severity
 from dataset_quality_checker.reports import render_html, write_reports
 from dataset_quality_checker.sample_data import generate_sample_dataset
 
@@ -49,10 +49,14 @@ def test_unknown_format_rejected(bad_report, tmp_path):
         write_reports(bad_report, tmp_path, formats=["pdf"])
 
 
-def test_html_escapes_untrusted_filenames(ds):
-    (ds / "labels" / "train" / "<script>alert(1)<").with_suffix(".txt").write_text("0 0.5 0.5 0.2 0.2")
-    html = render_html(run_checks(ds))
-    assert "<script>alert" not in html and "&lt;script&gt;" in html
+def test_html_escapes_untrusted_text(ds):
+    """Dangerous text must never reach the HTML unescaped (built in memory, so it works on Windows)."""
+    report = run_checks(ds)
+    report.issues.append(Issue(Severity.ERROR, "X", "<script>alert(1)</script>.png", "a <b> & 'c'"))
+    html = render_html(report)
+    assert "<script>alert" not in html
+    assert "&lt;script&gt;" in html
+    assert "&amp;" in html
 
 
 def test_cli_check_clean_exit_zero(ds, tmp_path, capsys):
