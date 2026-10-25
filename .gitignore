@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+htmlcov/
+.vscode/
+.idea/
+Thumbs.db
+# Generated reports (keep the folder, ignore the contents)
+reports/*
+!reports/.gitkeep
+# Generated sample datasets (recreate with: dqc sample sample_dataset/demo)
+sample_dataset/*
+!sample_dataset/.gitkeep

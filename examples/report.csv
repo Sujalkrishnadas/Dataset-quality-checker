@@ -1,0 +1,20 @@
+﻿severity,code,path,line,message
+error,BOX_NONPOSITIVE_SIZE,labels/train/bad_zero_width.txt,1,"Box has zero or negative size (width=0.0, height=0.2)."
+error,BOX_NOT_NUMERIC,labels/train/bad_not_numeric.txt,1,Box coordinates are not all numbers.
+error,BOX_OUT_OF_BOUNDS,labels/train/bad_out_of_bounds.txt,1,"Box extends beyond the image (x: 0.7000..1.1000, y: 0.7000..1.1000)."
+error,BOX_OUT_OF_BOUNDS,labels/train/bad_pixel_coordinates.txt,1,"Box extends beyond the image (x: 90.0000..150.0000, y: 60.0000..100.0000). Values above 1 suggest pixel coordinates instead of normalised ones."
+error,CLASS_NEGATIVE,labels/train/bad_negative_class.txt,1,Class id -1 is negative.
+error,CLASS_NOT_INTEGER,labels/train/bad_class_not_integer.txt,1,Class id '1.5' is not an integer.
+error,CLASS_OUT_OF_RANGE,labels/train/bad_class_out_of_range.txt,1,Class id 7 is outside the valid range 0..2.
+error,IMG_CORRUPT,images/train/corrupt_not_an_image.jpg,,Cannot decode image: UnidentifiedImageError: cannot identify image file 'sample_dataset/demo/images/train/corrupt_not_an_image.jpg'
+error,IMG_CORRUPT,images/train/truncated.png,,Cannot decode image: OSError: Truncated File Read
+error,LABEL_MALFORMED_LINE,labels/train/bad_malformed_line.txt,1,"Expected 5 values (class x_center y_center width height), found 3."
+error,LABEL_MISSING,images/train/no_label.png,,No matching label file found.
+warning,BOX_DUPLICATE,labels/train/bad_duplicate_box.txt,2,Identical box appears more than once in this file.
+warning,CLASS_IMBALANCE,,,"Severe class imbalance: class 0 has 43 objects, class 2 has 1 (ratio 43.0:1, threshold 10:1)."
+warning,IMG_BLANK,images/train/blank.png,,Image is blank or nearly blank (almost no pixel variation).
+warning,IMG_BLANK,images/train/tiny.png,,Image is blank or nearly blank (almost no pixel variation).
+warning,IMG_DUPLICATE,images/train/img_0001_copy.png,,Byte-identical duplicate of images/train/img_0001.png.
+warning,IMG_TOO_SMALL,images/train/tiny.png,,"Image is 8x8px, smaller than the minimum 32px."
+warning,LABEL_ORPHAN,labels/train/ghost_orphan.txt,,Label file has no matching image.
+info,LABEL_EMPTY,labels/train/blank.txt,,Label file is empty (treated as a background image).

@@ -1,0 +1,227 @@
+{
+  "tool": "dataset-quality-checker",
+  "version": "0.1.0",
+  "generated_at": "2026-10-25T10:34:23+00:00",
+  "dataset_root": "sample_dataset/demo",
+  "settings": {
+    "num_classes": 3,
+    "min_size": 32,
+    "check_blank": true,
+    "imbalance_ratio": 10.0,
+    "workers": 1,
+    "annotation_format": "yolo"
+  },
+  "statistics": {
+    "images_found": 39,
+    "images_readable": 37,
+    "images_unreadable": 2,
+    "images_without_label": 1,
+    "label_files_read": 38,
+    "empty_label_files": 1,
+    "invalid_label_lines": 8,
+    "valid_objects": 50,
+    "duplicate_groups": 1,
+    "image_dimensions": {
+      "min_width": 8,
+      "max_width": 315,
+      "mean_width": 218.5,
+      "min_height": 8,
+      "max_height": 304,
+      "mean_height": 217.5,
+      "common_sizes": [
+        {
+          "size": "215x219",
+          "count": 2
+        },
+        {
+          "size": "290x180",
+          "count": 1
+        },
+        {
+          "size": "174x172",
+          "count": 1
+        },
+        {
+          "size": "299x237",
+          "count": 1
+        },
+        {
+          "size": "162x277",
+          "count": 1
+        }
+      ]
+    },
+    "class_distribution": {
+      "0": {
+        "count": 43,
+        "percent": 86.0
+      },
+      "1": {
+        "count": 6,
+        "percent": 12.0
+      },
+      "2": {
+        "count": 1,
+        "percent": 2.0
+      }
+    },
+    "issue_counts": {
+      "errors": 11,
+      "warnings": 7,
+      "info": 1
+    },
+    "issues_by_code": {
+      "BOX_DUPLICATE": 1,
+      "BOX_NONPOSITIVE_SIZE": 1,
+      "BOX_NOT_NUMERIC": 1,
+      "BOX_OUT_OF_BOUNDS": 2,
+      "CLASS_IMBALANCE": 1,
+      "CLASS_NEGATIVE": 1,
+      "CLASS_NOT_INTEGER": 1,
+      "CLASS_OUT_OF_RANGE": 1,
+      "IMG_BLANK": 2,
+      "IMG_CORRUPT": 2,
+      "IMG_DUPLICATE": 1,
+      "IMG_TOO_SMALL": 1,
+      "LABEL_EMPTY": 1,
+      "LABEL_MALFORMED_LINE": 1,
+      "LABEL_MISSING": 1,
+      "LABEL_ORPHAN": 1
+    }
+  },
+  "issues": [
+    {
+      "severity": "error",
+      "code": "BOX_NONPOSITIVE_SIZE",
+      "path": "labels/train/bad_zero_width.txt",
+      "line": 1,
+      "message": "Box has zero or negative size (width=0.0, height=0.2)."
+    },
+    {
+      "severity": "error",
+      "code": "BOX_NOT_NUMERIC",
+      "path": "labels/train/bad_not_numeric.txt",
+      "line": 1,
+      "message": "Box coordinates are not all numbers."
+    },
+    {
+      "severity": "error",
+      "code": "BOX_OUT_OF_BOUNDS",
+      "path": "labels/train/bad_out_of_bounds.txt",
+      "line": 1,
+      "message": "Box extends beyond the image (x: 0.7000..1.1000, y: 0.7000..1.1000)."
+    },
+    {
+      "severity": "error",
+      "code": "BOX_OUT_OF_BOUNDS",
+      "path": "labels/train/bad_pixel_coordinates.txt",
+      "line": 1,
+      "message": "Box extends beyond the image (x: 90.0000..150.0000, y: 60.0000..100.0000). Values above 1 suggest pixel coordinates instead of normalised ones."
+    },
+    {
+      "severity": "error",
+      "code": "CLASS_NEGATIVE",
+      "path": "labels/train/bad_negative_class.txt",
+      "line": 1,
+      "message": "Class id -1 is negative."
+    },
+    {
+      "severity": "error",
+      "code": "CLASS_NOT_INTEGER",
+      "path": "labels/train/bad_class_not_integer.txt",
+      "line": 1,
+      "message": "Class id '1.5' is not an integer."
+    },
+    {
+      "severity": "error",
+      "code": "CLASS_OUT_OF_RANGE",
+      "path": "labels/train/bad_class_out_of_range.txt",
+      "line": 1,
+      "message": "Class id 7 is outside the valid range 0..2."
+    },
+    {
+      "severity": "error",
+      "code": "IMG_CORRUPT",
+      "path": "images/train/corrupt_not_an_image.jpg",
+      "line": null,
+      "message": "Cannot decode image: UnidentifiedImageError: cannot identify image file 'sample_dataset/demo/images/train/corrupt_not_an_image.jpg'"
+    },
+    {
+      "severity": "error",
+      "code": "IMG_CORRUPT",
+      "path": "images/train/truncated.png",
+      "line": null,
+      "message": "Cannot decode image: OSError: Truncated File Read"
+    },
+    {
+      "severity": "error",
+      "code": "LABEL_MALFORMED_LINE",
+      "path": "labels/train/bad_malformed_line.txt",
+      "line": 1,
+      "message": "Expected 5 values (class x_center y_center width height), found 3."
+    },
+    {
+      "severity": "error",
+      "code": "LABEL_MISSING",
+      "path": "images/train/no_label.png",
+      "line": null,
+      "message": "No matching label file found."
+    },
+    {
+      "severity": "warning",
+      "code": "BOX_DUPLICATE",
+      "path": "labels/train/bad_duplicate_box.txt",
+      "line": 2,
+      "message": "Identical box appears more than once in this file."
+    },
+    {
+      "severity": "warning",
+      "code": "CLASS_IMBALANCE",
+      "path": "",
+      "line": null,
+      "message": "Severe class imbalance: class 0 has 43 objects, class 2 has 1 (ratio 43.0:1, threshold 10:1)."
+    },
+    {
+      "severity": "warning",
+      "code": "IMG_BLANK",
+      "path": "images/train/blank.png",
+      "line": null,
+      "message": "Image is blank or nearly blank (almost no pixel variation)."
+    },
+    {
+      "severity": "warning",
+      "code": "IMG_BLANK",
+      "path": "images/train/tiny.png",
+      "line": null,
+      "message": "Image is blank or nearly blank (almost no pixel variation)."
+    },
+    {
+      "severity": "warning",
+      "code": "IMG_DUPLICATE",
+      "path": "images/train/img_0001_copy.png",
+      "line": null,
+      "message": "Byte-identical duplicate of images/train/img_0001.png."
+    },
+    {
+      "severity": "warning",
+      "code": "IMG_TOO_SMALL",
+      "path": "images/train/tiny.png",
+      "line": null,
+      "message": "Image is 8x8px, smaller than the minimum 32px."
+    },
+    {
+      "severity": "warning",
+      "code": "LABEL_ORPHAN",
+      "path": "labels/train/ghost_orphan.txt",
+      "line": null,
+      "message": "Label file has no matching image."
+    },
+    {
+      "severity": "info",
+      "code": "LABEL_EMPTY",
+      "path": "labels/train/blank.txt",
+      "line": null,
+      "message": "Label file is empty (treated as a background image)."
+    }
+  ]
+}

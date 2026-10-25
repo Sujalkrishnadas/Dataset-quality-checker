@@ -1,0 +1,5 @@
+# Runtime dependency
+Pillow>=10.0
+
+# Development dependency
+pytest>=7.0
